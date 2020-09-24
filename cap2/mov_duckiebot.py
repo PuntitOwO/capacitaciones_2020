@@ -42,39 +42,73 @@ else:
 # Se reinicia el environment
 env.reset()
 
-
+#Para controlar movimientos que tarden más de un paso
+remaining_steps = 0
 while True:
 
     # Captura la tecla que está siendo apretada y almacena su valor en key
     key = cv2.waitKey(30)
+    if remaining_steps > 0:
+        remaining_steps -= 1
+        key = -1
+        print(remaining_steps)
+    else:
+        # velocidad lineal y velocidad de giro por defecto
+        action = np.array([0.0, 0.0])
+    #[DEBUG] Muestra la tecla presionada detectada
+    print(key)
 
     # Si la tecla es Esc, se sale del loop y termina el programa
     if key == 27:
         break
 
-    # La acción de Duckiebot consiste en dos valores:
-    # velocidad lineal y velocidad de giro
-    # En este caso, ambas velocidades son 0 (acción por defecto)
-    action = np.array([0.0, 0.0])
-
     # Definir acción en base a la tecla apretada
 
-    # Esto es avanzar recto hacia adelante al apretar la tecla w
+    # Ir hacia adelante al apretar la tecla w
     if key == ord('w'):
         action = np.array([0.44, 0.0])
 
-    ### AGREGAR MÁS COMPORTAMIENTOS ###
+    # Ir hacia atrás
+    if key == ord('s'):
+        action = np.array([-0.44, 0.0])
 
+    # Girar a la derecha en el lugar
+    if key == ord('d'):
+        action = np.array([0.0, -1.0])
 
+    # Girar a la izquierda en el lugar
+    if key == ord('a'):
+        action = np.array([0.0, 1.0])
 
+    # Virar a la izquierda
+    if key == ord('q'):
+        action = np.array([0.35, 1.0])
+
+    # Virar a la derecha
+    if key == ord('e'):
+        action = np.array([0.35, -1.0])
+
+    # Media vuelta con SHIFT, acción de más de un paso.
+    if key == 225 and remaining_steps == 0:
+        action = np.array([0.0, 1.0])
+        remaining_steps = 66
+
+    # Vuelta completa con R, acción de más de un paso.
+    if key == ord('r') and remaining_steps == 0:
+        action = np.array([0.0, 1.0])
+        remaining_steps = 132
+
+    print(action)
     # Se ejecuta la acción definida anteriormente y se retorna la observación (obs),
     # la evaluación (reward), etc
     obs, reward, done, info = env.step(action)
+
     # obs consiste en un imagen de 640 x 480 x 3
 
     # done significa que el Duckiebot chocó con un objeto o se salió del camino
     if done:
         print('done!')
+        remaining_steps = 0
         # En ese caso se reinicia el simulador
         env.reset()
 
