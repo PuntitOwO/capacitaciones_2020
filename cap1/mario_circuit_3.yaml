@@ -1,0 +1,80 @@
+# The following section defines the grid layout.
+#
+# Each row is an array of tiles descriptions.
+# The top-left tile in this file maps to coordinates (0, 0) in the world
+# Each tile contains a string with the kind of tile and its orientation.
+# The orientations are North, South, East, West. This is the direction in
+# which the agent is expected to drive when going onto this tile.
+tiles:
+- [curve_left_wall~W, straight_wall~W   , straight_wall~W   , straight_wall~W    , straight_wall~W   , curve_left_wall~N , curve_left_wall~W  , straight_wall~W     , straight_wall~W      , straight_wall~W       , straight_wall~W      , curve_left_wall~N ]
+- [straight_wall    , curve_left/W      , straight/E        , straight/E         , curve_left/N      , curve_right_wall~W, curve_right_wall   , curve_left/W        , straight/E           , straight/E            , curve_left/N         , straight_wall~N   ]
+- [straight_wall    , straight/N        , curve_right_wall~N, curve_right_wall~E , curve_left/S      , straight/E        , straight/E         , curve_left/E        , curve_right_wall~N   , curve_right_wall~E    , straight/S           , straight_wall~N   ]
+- [straight_wall    , straight/N        , straight_wall~N   , curve_left_wall    , straight_wall~E   , straight_wall~E   , straight_wall~E    , straight_wall~E     , curve_left_wall~E    , straight_wall         , straight/S           , straight_wall~N   ]
+- [straight_wall    , straight_finish/N , straight_wall~N   , grass_mk           , curve_left_wall~W , straight_wall~W   , straight_wall~W    , straight_wall~W     , straight_wall~W      , curve_right_wall      , straight/S           , straight_wall~N   ]
+- [straight_wall    , straight/N        , straight_wall~N   , grass_mk           , straight_wall     , curve_left/W      , straight/W         , straight/W          , straight/W           , straight/W            , curve_left/E         , straight_wall~N   ]
+- [straight_wall    , straight/N        , straight_wall~N   , curve_left_wall~W  , curve_right_wall~S, straight/S        , straight_wall_end/W, straight_wall_line~W, straight_wall_line~W , straight_wall_line~W  , straight_wall_line~W , 3way_wall~N       ]
+- [straight_wall    , straight/N        , straight_wall~N   , straight_wall      , sand              , curve_left/S      , straight/E         , straight/E          , straight/E           , straight/E            , curve_left/N         , straight_wall~N   ]
+- [straight_wall    , straight/N        , straight_wall~N   , curve_left_wall    , straight_wall~E   , straight_wall~E   , straight_wall~E    , straight_wall~E     , straight_wall~E      , curve_right_wall~E    , straight/S           , straight_wall~N   ]
+- [straight_wall    , straight/N        , curve_right_wall~W, 3way_wall~W        , straight_wall~W   , straight_wall~W   , straight_wall~W    , straight_wall~W     , curve_left_wall~N    , straight_wall         , straight/S           , straight_wall~N   ]
+- [straight_wall    , curve_left/S      , curve_left/N      , straight_wall_end  , curve_left/W      , straight/W        , straight/W         , curve_left/N        , curve_right_wall~W   , curve_right_wall      , straight/S           , straight_wall~N   ]
+- [curve_left_wall  , curve_right_wall~E, curve_left/S      , straight/W         , curve_left/E      , curve_right_wall~N, curve_right_wall~E , curve_left/S        , straight/W           , straight/W            , curve_left/E         , straight_wall~N   ]
+- [grass_mk         , curve_left_wall   , straight_wall~E   , straight_wall~E    , straight_wall~E   , curve_left_wall~E , curve_left_wall    , straight_wall~E     , straight_wall~E      , straight_wall~E       , straight_wall~E      , curve_left_wall~E ]
+# The following is a listing of 3D objects placed on the map
+#
+# pos: object positions are scaled according to the tile size, so
+#      that (1.5, 2.5) would be exactly in the middle of tile (1, 2)
+# height: Objects can be scaled according to their real-world height in meters
+#         Duckietown tiles are 61cm, or 0.61 meter
+# rotate: the rotation angle determine the object's orientation
+#         a positive rotation angle corresponds to a counter-clockwise
+#         (leftward) rotation. The angles are in degrees.
+#         Models should, at angle 0, face towards the positive X axis.
+objects:
+
+- kind: cube
+  pos: [1.7, 2.4]
+  rotate: -90
+  height: 0.08
+  
+- kind: duckie
+  pos: [3.0, 2.9]
+  rotate: 135
+  height: 0.08
+  
+- kind: duckie
+  pos: [6.0, 1.0]
+  rotate: -90
+  height: 0.08
+  
+- kind: duckie
+  pos: [9.0, 2.9]
+  rotate: 45
+  height: 0.08
+  
+- kind: duckie
+  pos: [6.6, 6.5]
+  rotate: 180
+  height: 0.08
+
+- kind: duckie
+  pos: [4.8, 8.1]
+  rotate: 60
+  height: 0.08
+ 
+- kind: duckie
+  pos: [9.0, 9.0]
+  rotate: 60
+  height: 0.08
+  
+- kind: duckie
+  pos: [6.0, 12.0]
+  rotate: 40
+  height: 0.08
+  
+- kind: duckie
+  pos: [1.0, 12.0]
+  rotate: 45
+  height: 0.08
+
+start_tile: [1, 4]
+tile_size: 0.585
